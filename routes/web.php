@@ -11,9 +11,11 @@
 |
 */
 
+use App\Http\Middleware\CheckAge;
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware(CheckAge::class);
 
 Route::get('/tracy',function(){
     throw new \Exception('Tracyworks!');
