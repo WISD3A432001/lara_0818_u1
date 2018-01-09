@@ -24,3 +24,8 @@ Route::get('/tracy',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'login/social','middleware'=>['guest']],function(){
+    Route::get('{provider}/redirect', 'Auth\SocialController@getSocialRedirect')->name('social.redirect');
+    Route::get('{provider}/callback', 'Auth\SocialController@getSocialCallback')->name('social.callback');
+});
